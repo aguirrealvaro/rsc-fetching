@@ -1,10 +1,3 @@
-import { ThemeToggle } from "@/components";
+import Home from "./home/page";
 
-export default function Home() {
-  return (
-    <div>
-      <h1>Next Tailwind Template</h1>
-      <ThemeToggle />
-    </div>
-  );
-}
+export default Home;

@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import { FunctionComponent, ReactNode } from "react";
 import { Metadata } from "next";
-import { ThemeProvider } from "@/providers";
+import { Wrapper } from "@/components";
 import { cn } from "@/utils/cn";
 import { inter } from "@/utils/fonts";
 
@@ -23,13 +23,12 @@ const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
           `${inter.variable} font-body`
         )}
       >
-        <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col">
+          <Wrapper>
             <header>Header</header>
             <main className="flex-1">{children}</main>
-            <footer>Footer</footer>
-          </div>
-        </ThemeProvider>
+          </Wrapper>
+        </div>
       </body>
     </html>
   );
