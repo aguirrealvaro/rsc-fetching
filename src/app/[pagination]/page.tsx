@@ -5,19 +5,26 @@ import { ProductsType } from "@/types";
 const PER_PAGE = 20;
 
 type HomeProps = {
+  params: {
+    pagination: number;
+  };
   searchParams: {
     search: string | undefined;
   };
 };
 
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = async ({ params, searchParams }: HomeProps) => {
+  const { pagination } = params;
   const { search } = searchParams;
 
   const url = search
     ? `https://dummyjson.com/products/search?q=${search}`
     : "https://dummyjson.com/products";
 
-  const response = await fetch(url);
+  const response = await fetch(
+    `https://dummyjson.com/products?skip=${pagination - 1}&limit=${PER_PAGE}`
+  );
+
   const { products, total }: ProductsType = await response.json();
 
   return (
