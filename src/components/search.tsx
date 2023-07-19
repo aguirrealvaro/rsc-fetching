@@ -1,14 +1,18 @@
 "use client";
 
-import { ChangeEvent, FunctionComponent } from "react";
+import { ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
-const Search: FunctionComponent = () => {
+type SearchProps = {
+  pagination: number;
+};
+
+const Search = ({ pagination }: SearchProps) => {
   const router = useRouter();
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const route = e.target.value ? `?search=${e.target.value}` : "";
-    router.push(route);
+    const route = e.target.value ? `?search=${e.target.value}` : "/";
+    router.push(`/${pagination}/${route}`);
   };
 
   return (

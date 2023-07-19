@@ -19,20 +19,21 @@ const Home = async ({ params, searchParams }: HomeProps) => {
 
   const paginationAsNumber = parseInt(pagination);
 
-  const url = search
-    ? `https://dummyjson.com/products/search?q=${search}`
-    : "https://dummyjson.com/products";
+  // TO DO: Move this to env var and function buildUrl
+  const baseUrl = "https://dummyjson.com/products";
+  const searchUrl = search ? `/search?q=${search}` : "";
+  const unionSearchWithPagination = search ? "&" : "?";
+  const paginationUrl = `skip=${paginationAsNumber - 1}&limit=${PER_PAGE}`;
+  const url = `${baseUrl}${searchUrl}${unionSearchWithPagination}${paginationUrl}`;
 
-  const response = await fetch(
-    `https://dummyjson.com/products?skip=${paginationAsNumber - 1}&limit=${PER_PAGE}`
-  );
+  const response = await fetch(url);
 
   const { products, total }: ProductsType = await response.json();
 
   return (
     <div>
       <div className="mb-8">
-        <Search />
+        <Search pagination={paginationAsNumber} />
       </div>
       <ul className="mb-12 grid grid-cols-4 gap-4">
         {products.map((product) => {
