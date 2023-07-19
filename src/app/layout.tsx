@@ -6,8 +6,7 @@ import { cn } from "@/utils/cn";
 import { inter } from "@/utils/fonts";
 
 export const metadata: Metadata = {
-  title: "Next Tailwind Template",
-  description: "Description",
+  title: "React Server Component - Fetching",
 };
 
 type RootLayoutProps = {
