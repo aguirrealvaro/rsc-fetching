@@ -2,11 +2,11 @@
 import { Pagination, Search } from "@/components";
 import { ProductsType } from "@/types";
 
-const PER_PAGE = 20;
+const PER_PAGE = 10;
 
 type HomeProps = {
   params: {
-    pagination: number;
+    pagination: string;
   };
   searchParams: {
     search: string | undefined;
@@ -17,12 +17,14 @@ const Home = async ({ params, searchParams }: HomeProps) => {
   const { pagination } = params;
   const { search } = searchParams;
 
+  const paginationAsNumber = parseInt(pagination);
+
   const url = search
     ? `https://dummyjson.com/products/search?q=${search}`
     : "https://dummyjson.com/products";
 
   const response = await fetch(
-    `https://dummyjson.com/products?skip=${pagination - 1}&limit=${PER_PAGE}`
+    `https://dummyjson.com/products?skip=${paginationAsNumber - 1}&limit=${PER_PAGE}`
   );
 
   const { products, total }: ProductsType = await response.json();
@@ -32,7 +34,7 @@ const Home = async ({ params, searchParams }: HomeProps) => {
       <div className="mb-8">
         <Search />
       </div>
-      <ul className="mb-12 grid grid-cols-2 gap-4">
+      <ul className="mb-12 grid grid-cols-4 gap-4">
         {products.map((product) => {
           const { id, title, description, price, images } = product;
 
@@ -52,7 +54,7 @@ const Home = async ({ params, searchParams }: HomeProps) => {
           );
         })}
       </ul>
-      <Pagination pages={Math.ceil(total / PER_PAGE)} />
+      <Pagination pages={Math.ceil(total / PER_PAGE)} active={paginationAsNumber} />
     </div>
   );
 };
