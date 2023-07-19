@@ -1,12 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
+import { Search } from "@/components";
 import { ProductsType } from "@/types";
 
-const Home = async () => {
-  const response = await fetch("https://dummyjson.com/products");
+type HomeProps = {
+  searchParams: {
+    search: string | undefined;
+  };
+};
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const { search } = searchParams;
+
+  const url = search
+    ? `https://dummyjson.com/products/search?q=${search}`
+    : "https://dummyjson.com/products";
+
+  const response = await fetch(url);
   const { products }: ProductsType = await response.json();
 
   return (
     <div>
+      <div className="mb-8">
+        <Search />
+      </div>
       <ul className="grid grid-cols-2 gap-4">
         {products.map((product) => {
           const { id, title, description, price, images } = product;
