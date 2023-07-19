@@ -23,12 +23,9 @@ const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
           `${inter.variable} font-body`
         )}
       >
-        <div className="flex min-h-screen flex-col">
-          <Wrapper>
-            <header>Header</header>
-            <main className="flex-1">{children}</main>
-          </Wrapper>
-        </div>
+        <main>
+          <Wrapper>{children}</Wrapper>
+        </main>
       </body>
     </html>
   );
