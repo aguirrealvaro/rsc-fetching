@@ -1,3 +1,3 @@
-# Next Tailwind Template
+# rsc-fetching
 
-Template of a react production-ready application Typescript, Prettier, ESlint, Pre-commit, Tailwind and Dark Mode
+Fetching on the server with React Server Components

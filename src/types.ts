@@ -1,5 +1,6 @@
 export type ProductsType = {
   products: ProductType[];
+  total: number;
 };
 
 export type ProductType = {
