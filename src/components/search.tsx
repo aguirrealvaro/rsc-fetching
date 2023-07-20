@@ -19,7 +19,7 @@ const Search = ({ pagination }: SearchProps) => {
     <div className="flex flex-col gap-2">
       <label htmlFor="search-bar">Search:</label>
       <input
-        id="seach-bar"
+        id="search-bar"
         type="search"
         className="w-full rounded border px-4 py-2 outline-offset-0"
         onChange={handleSearch}

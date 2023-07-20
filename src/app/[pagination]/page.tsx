@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pagination, Search } from "@/components";
 import { ProductsType } from "@/types";
+import { getProductsUrl } from "@/utils/get-products-url";
 
 const PER_PAGE = 10;
 
@@ -18,13 +19,7 @@ const Home = async ({ params, searchParams }: HomeProps) => {
   const { search } = searchParams;
 
   const paginationAsNumber = parseInt(pagination);
-
-  // TO DO: Move this to env var and function buildUrl
-  const baseUrl = "https://dummyjson.com/products";
-  const searchUrl = search ? `/search?q=${search}` : "";
-  const unionSearchWithPagination = search ? "&" : "?";
-  const paginationUrl = `skip=${paginationAsNumber - 1}&limit=${PER_PAGE}`;
-  const url = `${baseUrl}${searchUrl}${unionSearchWithPagination}${paginationUrl}`;
+  const url = getProductsUrl(search, paginationAsNumber, PER_PAGE);
 
   const response = await fetch(url);
 
