@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { FunctionComponent, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Metadata } from "next";
 import { Wrapper } from "@/components";
 import { cn } from "@/utils/cn";
@@ -13,7 +13,7 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
-const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body

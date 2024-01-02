@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 
@@ -7,7 +6,7 @@ type PaginationProps = {
   active: number;
 };
 
-const Pagination: FunctionComponent<PaginationProps> = ({ pages, active }) => {
+const Pagination = ({ pages, active }: PaginationProps) => {
   const pagesArray = Array.from(Array(pages).keys());
 
   return (
