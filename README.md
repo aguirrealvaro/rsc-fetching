@@ -6,4 +6,3 @@ Fetching on the server with React Server Components
 
 - use new URLSearchParams
 - get rid redirect
-- move per page to config
