@@ -33,7 +33,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <div className="mb-8">
         <Search pagination={paginationAsNumber} />
       </div>
-      <ul className="mb-12 grid grid-cols-4 gap-4">
+      <ul className="mb-12 grid grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
         {products.map((product) => {
           const { id, title, description, price, images } = product;
 
