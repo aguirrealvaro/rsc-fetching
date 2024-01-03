@@ -11,8 +11,14 @@ const Search = ({ pagination }: SearchProps) => {
   const router = useRouter();
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const route = e.target.value ? `?search=${e.target.value}` : "/";
-    router.push(`/${pagination}/${route}`);
+    const searchParams = new URLSearchParams();
+
+    if (e.target.value) {
+      searchParams.append("search", e.target.value);
+    }
+
+    const route = searchParams.toString();
+    router.push(`/${pagination}/?${route}`);
   };
 
   return (
