@@ -24,11 +24,9 @@ const Home = async ({ params, searchParams }: HomeProps) => {
   const { pagination } = params;
   const { search } = searchParams;
 
-  console.log({ params, searchParams });
-
   const paginationAsNumber = parseInt(pagination);
   const url = getProductsUrl(search, paginationAsNumber, PER_PAGE);
-  const { products, total } = await getProducts(url);
+  const { products, total } = await getProducts(url.href);
 
   return (
     <div>
