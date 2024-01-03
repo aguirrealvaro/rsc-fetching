@@ -11,21 +11,18 @@ const Search = ({ pagination }: SearchProps) => {
   const router = useRouter();
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const searchParams = new URLSearchParams();
-
-    if (pagination) {
-      searchParams.append("pagination", `${pagination}`);
-    }
+    const initialSearchParams = pagination ? { pagination: `${pagination}` } : undefined;
+    const searchParams = new URLSearchParams(initialSearchParams);
 
     if (e.target.value) {
       searchParams.append("search", e.target.value);
+    } else {
+      searchParams.delete("search", "");
     }
 
     const params = searchParams.toString();
 
-    if (params) {
-      router.push(`/?${params}`);
-    }
+    router.push(`/?${params}`);
   };
 
   return (
