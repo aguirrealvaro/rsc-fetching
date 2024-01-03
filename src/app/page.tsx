@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pagination, Search } from "@/components";
+import { PER_PAGE } from "@/config";
 import { ProductsType } from "@/types";
 import { getProductsUrl } from "@/utils/get-products-url";
-
-const PER_PAGE = 10;
 
 type HomeProps = {
   searchParams: {
