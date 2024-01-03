@@ -14,16 +14,21 @@ type HomeProps = {
   };
 };
 
+const getProducts = async (url: string): Promise<ProductsType> => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
+
 const Home = async ({ params, searchParams }: HomeProps) => {
   const { pagination } = params;
   const { search } = searchParams;
 
+  console.log({ params, searchParams });
+
   const paginationAsNumber = parseInt(pagination);
   const url = getProductsUrl(search, paginationAsNumber, PER_PAGE);
-
-  const response = await fetch(url);
-
-  const { products, total }: ProductsType = await response.json();
+  const { products, total } = await getProducts(url);
 
   return (
     <div>
