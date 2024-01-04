@@ -1,8 +1,9 @@
 import { PER_PAGE } from "@/config";
+import { ProductsType } from "@/types";
 
 const API_URL = process.env.API_URL;
 
-export const getProductsUrl = (search: string | undefined, pagination: number | undefined) => {
+const getUrl = (search: string | undefined, pagination: number | undefined) => {
   if (!API_URL) {
     throw new Error("No API_URL provided");
   }
@@ -20,4 +21,14 @@ export const getProductsUrl = (search: string | undefined, pagination: number | 
   }
 
   return url;
+};
+
+export const getProducts = async (
+  search: string | undefined,
+  pagination: number | undefined
+): Promise<ProductsType> => {
+  const url = getUrl(search, pagination);
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
 };

@@ -1,24 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pagination, Search } from "@/components";
 import { PER_PAGE } from "@/config";
-import { ProductsType } from "@/types";
-import { getProductsUrl } from "@/utils/get-products-url";
+import { getProducts } from "@/lib";
 
 type HomeProps = {
   searchParams: {
     search: string | undefined;
     pagination: string | undefined;
   };
-};
-
-const getProducts = async (
-  search: string | undefined,
-  pagination: number | undefined
-): Promise<ProductsType> => {
-  const url = getProductsUrl(search, pagination);
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
 };
 
 const Home = async ({ searchParams }: HomeProps) => {
