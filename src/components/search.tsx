@@ -26,7 +26,7 @@ const Search = ({ pagination }: SearchProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="mb-8 flex flex-col gap-2">
       <label htmlFor="search-bar">Search:</label>
       <input
         id="search-bar"
