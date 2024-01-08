@@ -23,7 +23,7 @@ const getUrl = (search: string | undefined, pagination: number | undefined) => {
   return url;
 };
 
-/* export const getProducts = async (
+export const getProducts = async (
   search: string | undefined,
   pagination: number | undefined
 ): Promise<ProductsType> => {
@@ -31,14 +31,14 @@ const getUrl = (search: string | undefined, pagination: number | undefined) => {
   const response = await fetch(url);
   const data = await response.json();
   return data;
-}; */
+};
 
 // getProducts with delay, to test fallback suspense
-export const getProducts = async (
+/* export const getProducts = async (
   search: string | undefined,
   pagination: number | undefined
-): Promise<ProductsType> =>
-  new Promise((resolve) => {
+): Promise<ProductsType> => {
+  return new Promise((resolve) => {
     setTimeout(async () => {
       const url = getUrl(search, pagination);
       const response = await fetch(url);
@@ -46,3 +46,4 @@ export const getProducts = async (
       resolve(data);
     }, 5000);
   });
+}; */

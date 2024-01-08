@@ -9,17 +9,16 @@ type HomeProps = {
 };
 
 const Home = async ({ searchParams }: HomeProps) => {
-  const { search, pagination } = searchParams;
-
-  const paginationAsNumber = pagination ? Number(pagination) : undefined;
+  const { search, pagination: paginationAsString } = searchParams;
+  const pagination = paginationAsString ? Number(paginationAsString) : undefined;
 
   return (
-    <div>
-      <Search pagination={paginationAsNumber} />
+    <>
+      <Search pagination={pagination} />
       <Suspense fallback="loading">
-        <Products search={search} pagination={paginationAsNumber} />
+        <Products search={search} pagination={pagination} />
       </Suspense>
-    </div>
+    </>
   );
 };
 
