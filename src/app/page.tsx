@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Products, Search } from "@/components";
+import { Products, Search, Skeleton } from "@/components";
 
 type HomeProps = {
   searchParams: {
@@ -15,7 +15,7 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <>
       <Search page={page} />
-      <Suspense fallback="loading">
+      <Suspense fallback={<Skeleton />}>
         <Products search={search} page={page} />
       </Suspense>
     </>
