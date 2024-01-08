@@ -4,14 +4,14 @@ import { ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
 type SearchProps = {
-  pagination: number | undefined;
+  page: number | undefined;
 };
 
-const Search = ({ pagination }: SearchProps) => {
+const Search = ({ page }: SearchProps) => {
   const router = useRouter();
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const initialSearchParams = pagination ? { pagination: `${pagination}` } : undefined;
+    const initialSearchParams = page ? { page: page.toString() } : undefined;
     const searchParams = new URLSearchParams(initialSearchParams);
 
     if (e.target.value) {

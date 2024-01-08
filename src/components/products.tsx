@@ -5,11 +5,11 @@ import { getProducts } from "@/lib";
 
 type ProductsType = {
   search: string | undefined;
-  pagination: number | undefined;
+  page: number | undefined;
 };
 
-export const Products = async ({ search, pagination }: ProductsType) => {
-  const { products, total } = await getProducts(search, pagination);
+export const Products = async ({ search, page }: ProductsType) => {
+  const { products, total } = await getProducts(search, page);
 
   return (
     <div>
@@ -33,7 +33,7 @@ export const Products = async ({ search, pagination }: ProductsType) => {
           );
         })}
       </ul>
-      <Pagination pages={Math.ceil(total / PER_PAGE)} active={pagination} />
+      <Pagination pages={Math.ceil(total / PER_PAGE)} active={page} />
     </div>
   );
 };

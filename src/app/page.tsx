@@ -4,19 +4,19 @@ import { Products, Search } from "@/components";
 type HomeProps = {
   searchParams: {
     search: string | undefined;
-    pagination: string | undefined;
+    page: string | undefined;
   };
 };
 
 const Home = async ({ searchParams }: HomeProps) => {
-  const { search, pagination: paginationAsString } = searchParams;
-  const pagination = paginationAsString ? Number(paginationAsString) : undefined;
+  const { search, page: pageAsString } = searchParams;
+  const page = pageAsString ? Number(pageAsString) : undefined;
 
   return (
     <>
-      <Search pagination={pagination} />
+      <Search page={page} />
       <Suspense fallback="loading">
-        <Products search={search} pagination={pagination} />
+        <Products search={search} page={page} />
       </Suspense>
     </>
   );

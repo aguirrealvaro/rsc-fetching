@@ -19,7 +19,7 @@ const Pagination = ({ pages, active = 1 }: PaginationProps) => {
           if (pageNumber === 1) {
             return "/";
           } else {
-            return { query: { pagination: `${pageNumber}` } };
+            return { query: { page: `${pageNumber}` } };
           }
         };
 
