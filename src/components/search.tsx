@@ -1,38 +1,35 @@
 "use client";
 
 import { ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-type SearchProps = {
-  page: number | undefined;
-};
-
-const Search = ({ page }: SearchProps) => {
+const Search = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const initialSearchParams = page ? { page: page.toString() } : undefined;
-    const searchParams = new URLSearchParams(initialSearchParams);
+    const params = new URLSearchParams(searchParams);
 
     if (e.target.value) {
-      searchParams.append("search", e.target.value);
+      params.set("search", e.target.value);
     } else {
-      searchParams.delete("search", "");
+      params.delete("search");
     }
 
-    const params = searchParams.toString();
-
-    router.push(`/?${params}`);
+    router.replace(`${pathname}/?${params.toString()}`);
   };
 
   return (
-    <div className="mb-8 flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <label htmlFor="search-bar">Search:</label>
       <input
         id="search-bar"
+        placeholder="Search products..."
         type="search"
         className="w-full rounded border px-4 py-2 outline-offset-0"
         onChange={handleSearch}
+        defaultValue={searchParams.get("search") || undefined}
       />
     </div>
   );

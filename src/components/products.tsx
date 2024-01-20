@@ -12,8 +12,8 @@ export const Products = async ({ search, page }: ProductsType) => {
   const { products, total } = await getProducts(search, page);
 
   return (
-    <div>
-      <ul className="mb-12 grid grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
+    <div className="flex flex-col gap-12">
+      <ul className="grid grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
         {products.map((product) => {
           const { id, title, description, price, images } = product;
 

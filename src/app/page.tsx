@@ -13,12 +13,12 @@ const Home = async ({ searchParams }: HomeProps) => {
   const page = pageAsString ? Number(pageAsString) : undefined;
 
   return (
-    <>
-      <Search page={page} />
+    <div className="flex flex-col gap-8">
+      <Search />
       <Suspense fallback={<Skeleton />}>
         <Products search={search} page={page} />
       </Suspense>
-    </>
+    </div>
   );
 };
 
