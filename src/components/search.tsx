@@ -2,13 +2,14 @@
 
 import { ChangeEvent } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 const Search = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = useDebouncedCallback((e: ChangeEvent<HTMLInputElement>) => {
     const params = new URLSearchParams(searchParams);
 
     if (e.target.value) {
@@ -18,7 +19,7 @@ const Search = () => {
     }
 
     router.replace(`${pathname}/?${params.toString()}`);
-  };
+  }, 500);
 
   return (
     <div className="flex flex-col gap-2">
