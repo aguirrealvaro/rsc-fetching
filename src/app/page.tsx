@@ -3,20 +3,20 @@ import { Products, Search, Skeleton } from "@/components";
 
 type HomeProps = {
   searchParams: {
-    search: string | undefined;
-    page: string | undefined;
+    search?: string;
+    page?: string;
   };
 };
 
 const Home = async ({ searchParams }: HomeProps) => {
-  const { search, page: pageAsString } = searchParams;
-  const page = pageAsString ? Number(pageAsString) : undefined;
+  const search = searchParams?.search || "";
+  const currentPage = searchParams.page ? Number(searchParams.page) : undefined;
 
   return (
     <div className="flex flex-col gap-8">
       <Search />
-      <Suspense fallback={<Skeleton />}>
-        <Products search={search} page={page} />
+      <Suspense key={search + currentPage} fallback={<Skeleton />}>
+        <Products search={search} page={currentPage} />
       </Suspense>
     </div>
   );
