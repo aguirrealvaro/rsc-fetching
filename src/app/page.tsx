@@ -10,7 +10,7 @@ type HomeProps = {
 
 const Home = async ({ searchParams }: HomeProps) => {
   const search = searchParams?.search || "";
-  const currentPage = searchParams.page ? Number(searchParams.page) : undefined;
+  const currentPage = Number(searchParams.page);
 
   return (
     <div className="flex flex-col gap-8">
