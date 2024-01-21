@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-const Search = () => {
+const Search = ({ currentPage }: { currentPage: number }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -14,8 +14,10 @@ const Search = () => {
 
     if (e.target.value) {
       params.set("search", e.target.value);
+      params.set("page", currentPage.toString());
     } else {
       params.delete("search");
+      params.delete("page");
     }
 
     router.replace(`${pathname}/?${params.toString()}`);

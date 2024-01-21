@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 type PaginationProps = {
   pages: number;
-  active: number | undefined;
+  active: number;
 };
 
 const Pagination = ({ pages, active = 1 }: PaginationProps) => {
@@ -15,18 +15,10 @@ const Pagination = ({ pages, active = 1 }: PaginationProps) => {
         const pageNumber = page + 1;
         const isActive = active === pageNumber;
 
-        const linkParams = () => {
-          if (pageNumber === 1) {
-            return "/";
-          } else {
-            return { query: { page: `${pageNumber}` } };
-          }
-        };
-
         return (
           <li key={pageNumber}>
             <Link
-              href={linkParams()}
+              href={{ query: { page: `${pageNumber}` } }}
               className={cn(
                 "rounded border px-4 py-2",
                 isActive ? "border-blue-600 font-semibold text-blue-600" : ""

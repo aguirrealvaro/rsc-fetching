@@ -4,8 +4,8 @@ import { PER_PAGE } from "@/config";
 import { getProducts } from "@/lib";
 
 type ProductsType = {
-  search: string | undefined;
-  page: number | undefined;
+  search: string;
+  page: number;
 };
 
 export const Products = async ({ search, page }: ProductsType) => {
